@@ -1,18 +1,16 @@
 class Solution {
     public int[] sortArrayByParity(int[] arr) {
-     // int[] ans = new int[arr.length];
-        ArrayList<Integer> ans = new ArrayList<Integer>(arr.length);
-        for(int i = 0;i<arr.length;i++){
-            if(arr[i]%2 == 0){
-                ans.add(arr[i]);
+        int i = 0;
+        int j = arr.length - 1;
+        while(i < j){
+            if(arr[i]%2 > arr[j]%2){
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
             }
+            if(arr[i]%2 == 0) i++;
+            if(arr[j]%2 != 0) j--;
         }
-        for(int i = 0;i<arr.length;i++){
-            if(arr[i]%2 != 0){
-                ans.add(arr[i]);
-            }
-        }
-        int[] ansT = ans.stream().mapToInt(i -> i).toArray();
-        return ansT;
+        return arr;
     }
 }
